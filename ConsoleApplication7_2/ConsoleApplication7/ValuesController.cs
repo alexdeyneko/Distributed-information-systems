@@ -74,28 +74,31 @@ namespace ConsoleApplication7
        */
 
         private Sender sender = new Sender();
-        private string address = "http://localhost:9000/";
-
-        private int Shard()
+       
+        private int Shard(int key, int n)
         {
-            return 0;
+            return key%n;
         }
+        private string Route(int port)
+        {
+            return "http://localhost:" + (9000 + port).ToString()+"/";
+        }
+
         public void Put(string id, [FromBody]string value)
         {
-            sender.baseAddress = address;
-
+            sender.baseAddress = Route(Shard(Convert.ToInt32(id), 2));
             sender.Put(id,value);
         }
 
         public string Get(string id)
         {
-            sender.baseAddress = address;
+            sender.baseAddress = Route(Shard(Convert.ToInt32(id), 2));
             return sender.Get(id);
         }
 
         public void Delete(string id)
         {
-            sender.baseAddress = address;
+            sender.baseAddress = Route(Shard(Convert.ToInt32(id), 2));
             sender.Delete(id);
         }
 
