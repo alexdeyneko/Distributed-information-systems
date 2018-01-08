@@ -50,7 +50,7 @@ namespace UnitTestProject1
         [TestMethod]
         public void OpenConnection()
         {
-            Process.Start("C:\\Users\\Алексей\\Desktop\\ConsoleApplication7_2\\ConsoleApplication7\\bin\\Debug\\node"+nodeNumber.ToString()+".exe");
+            Process.Start("node"+nodeNumber.ToString()+".exe");
 
         }
 
@@ -123,8 +123,8 @@ namespace UnitTestProject1
         [TestMethod]
         public void StartTwoNodes()
         {
-            Process.Start("C:\\Users\\Алексей\\Desktop\\ConsoleApplication7_2\\ConsoleApplication7\\bin\\Debug\\node0.exe");
-            Process.Start("C:\\Users\\Алексей\\Desktop\\ConsoleApplication7_2\\ConsoleApplication7\\bin\\Debug\\node1.exe");
+            Process.Start("node0.exe");
+            Process.Start("node1.exe");
 
         }
     }
