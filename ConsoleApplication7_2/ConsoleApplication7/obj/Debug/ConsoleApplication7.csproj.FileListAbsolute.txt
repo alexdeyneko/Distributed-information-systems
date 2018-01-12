@@ -16,8 +16,9 @@ C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\Console
 C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\ConsoleApplication7\bin\Debug\System.Web.Http.Owin.xml
 C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\ConsoleApplication7\bin\Debug\System.Web.Http.SelfHost.xml
 C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\ConsoleApplication7\obj\Debug\ConsoleApplication7.csproj.CoreCompileInputs.cache
-C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\ConsoleApplication7\bin\Debug\Node.exe.config
-C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\ConsoleApplication7\bin\Debug\Node.exe
-C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\ConsoleApplication7\bin\Debug\Node.pdb
-C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\ConsoleApplication7\obj\Debug\Node.exe
-C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\ConsoleApplication7\obj\Debug\Node.pdb
+C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\ConsoleApplication7\bin\Debug\ConsoleApplication7.exe.config
+C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\ConsoleApplication7\bin\Debug\ConsoleApplication7.exe
+C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\ConsoleApplication7\bin\Debug\ConsoleApplication7.pdb
+C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\ConsoleApplication7\obj\Debug\ConsoleApplication7.csprojResolveAssemblyReference.cache
+C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\ConsoleApplication7\obj\Debug\ConsoleApplication7.exe
+C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\ConsoleApplication7\obj\Debug\ConsoleApplication7.pdb

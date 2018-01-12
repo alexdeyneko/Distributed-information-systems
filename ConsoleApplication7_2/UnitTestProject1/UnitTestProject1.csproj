@@ -91,9 +91,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ConsoleApplication7\ConsoleApplication7.csproj">
+    <ProjectReference Include="..\ConsoleApplication7\Node.csproj">
       <Project>{3fe02e7d-064a-4007-a18a-737393c29333}</Project>
-      <Name>ConsoleApplication7</Name>
+      <Name>Node</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
