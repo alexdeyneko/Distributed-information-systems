@@ -30,16 +30,21 @@ namespace UnitTestProject1
     [TestClass]
     public class UnitTest1 : Sender
     {
-        static private int nodeNumber = 0;
-        private string path = @"nodes\db"+nodeNumber+".txt";
+        static private string port = "9000";
+        private string path = @"nodes\"+port+".txt";
         public Dictionary<string, string> testData;
         public UnitTest1()
         {
-            baseAddress = "http://localhost:"+(9000+nodeNumber).ToString()+"/";
+            baseAddress = "http://localhost:"+port+"/";
             testData = new TestDataGenerator().GenerateTestData();
 
         }
+        [TestMethod]
+        public void OpenConnection()
+        {
+            Process.Start("Node.exe",port);
 
+        }
         [TestMethod]
         public void ClearDB()
         {
@@ -47,12 +52,7 @@ namespace UnitTestProject1
             Assert.AreEqual(new FileInfo(path).Length, 0);
         }
 
-        [TestMethod]
-        public void OpenConnection()
-        {
-            Process.Start("node"+nodeNumber.ToString()+".exe");
-
-        }
+        
 
         [TestMethod]
         public void PutValues()
@@ -120,12 +120,17 @@ namespace UnitTestProject1
     [TestClass]
     public class UnitTest2 :Sender
     {
+        
         [TestMethod]
         public void StartTwoNodes()
         {
-            Process.Start("node0.exe");
-            Process.Start("node1.exe");
+            Process.Start("Node.exe", "9000");
+            Process.Start("Node.exe", "9001");
+            Process.Start("Node.exe", "9002");
+            Process.Start("Node.exe", "9003");
+
 
         }
+
     }
 }

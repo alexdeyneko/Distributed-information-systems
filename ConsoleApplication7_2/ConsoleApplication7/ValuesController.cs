@@ -10,13 +10,11 @@ namespace ConsoleApplication7
 {
     public class ValuesController : ApiController
     {
-
-        /*
         private Dictionary<string, string> dictionary = new Dictionary<string, string>();
-        private string path = @"nodes\db3.txt";
+        
         private void readAll()
         {
-            foreach (var item in File.ReadLines(path).ToList())
+            foreach (var item in File.ReadLines(Storage.filePath).ToList())
             {
                 string key = item.Split(' ')[0];
                 string value = item.Split(' ')[1];
@@ -25,7 +23,7 @@ namespace ConsoleApplication7
         }
         private void writeAll()
         {
-            using (StreamWriter writer = new StreamWriter(path, false))
+            using (StreamWriter writer = new StreamWriter(Storage.filePath, false))
             {
                 foreach (var item in dictionary)
                 {
@@ -71,8 +69,8 @@ namespace ConsoleApplication7
             writeAll();
         }
 
-       */
-
+       
+       /*
         private Sender sender = new Sender();
        
         private int Shard(int key, int n)
@@ -101,6 +99,6 @@ namespace ConsoleApplication7
             sender.baseAddress = Route(Shard(Convert.ToInt32(id), 2));
             sender.Delete(id);
         }
-
+        */
     }
 }

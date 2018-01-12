@@ -14,14 +14,28 @@ namespace ConsoleApplication7
     class Program
     {
 
-        static void Main()
+        static void Main(String[] args)
         {
+           
+            Storage.port =args[0];
             
-            using (WebApp.Start<Startup>(url: "http://localhost:9004/"))
+            CreateDB();
+            
+            using (WebApp.Start<Startup>(url: "http://localhost:"+Storage.port+"/"))
             {
                 for (;;) { }
             }
             
+        }
+
+        static private void CreateDB()
+        {
+            Storage.filePath= @"nodes\" + Storage.port + ".txt";
+
+            if (!File.Exists(Storage.filePath))
+            {
+                File.Create(Storage.filePath);
+            }
         }
     }
 }

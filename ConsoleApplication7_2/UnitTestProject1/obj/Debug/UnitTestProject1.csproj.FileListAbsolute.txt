@@ -75,7 +75,6 @@ C:\Users\Алексей\Desktop\ConsoleApplication7_2\UnitTestProject1\bin\Debug
 C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\bin\Debug\UnitTestProject1.dll.config
 C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\bin\Debug\UnitTestProject1.dll
 C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\bin\Debug\UnitTestProject1.pdb
-C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\bin\Debug\ConsoleApplication7.exe
 C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\bin\Debug\Microsoft.Owin.dll
 C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\bin\Debug\Microsoft.Owin.Host.HttpListener.dll
 C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\bin\Debug\Microsoft.Owin.Hosting.dll
@@ -86,8 +85,6 @@ C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\Console
 C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\bin\Debug\System.Web.Http.Owin.dll
 C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\bin\Debug\System.Web.Http.SelfHost.dll
 C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\bin\Debug\Owin.dll
-C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\bin\Debug\ConsoleApplication7.pdb
-C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\bin\Debug\ConsoleApplication7.exe.config
 C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\bin\Debug\Microsoft.Owin.xml
 C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\bin\Debug\Microsoft.Owin.Host.HttpListener.xml
 C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\bin\Debug\Microsoft.Owin.Hosting.xml
@@ -101,3 +98,6 @@ C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\Console
 C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\obj\Debug\UnitTestProject1.csproj.CoreCompileInputs.cache
 C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\obj\Debug\UnitTestProject1.dll
 C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\obj\Debug\UnitTestProject1.pdb
+C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\bin\Debug\Node.exe
+C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\bin\Debug\Node.pdb
+C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\bin\Debug\Node.exe.config
