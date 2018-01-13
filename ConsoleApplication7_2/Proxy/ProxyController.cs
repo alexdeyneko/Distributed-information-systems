@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Proxy;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,26 +19,29 @@ namespace ConsoleApplication7
         {
             return key%n;
         }
-        private string Route(int port)
+
+        private void Route(int id)
         {
-            return "http://localhost:" + (9000 + port).ToString()+"/";
+            int shard= Shard(Convert.ToInt32(id), ProxyStorage.nodePorts.Count);
+            sender.baseAddress= "http://localhost:" + ProxyStorage.nodePorts[shard].ToString()+"/api/values/";
+
         }
 
         public void Put(string id, [FromBody]string value)
         {
-            sender.baseAddress = Route(Shard(Convert.ToInt32(id), 2));
+            Route(Convert.ToInt32(id));
             sender.Put(id,value);
         }
 
         public string Get(string id)
         {
-            sender.baseAddress = Route(Shard(Convert.ToInt32(id), 2));
+            Route(Convert.ToInt32(id));
             return sender.Get(id);
         }
 
         public void Delete(string id)
         {
-            sender.baseAddress = Route(Shard(Convert.ToInt32(id), 2));
+            Route(Convert.ToInt32(id));
             sender.Delete(id);
         }
         

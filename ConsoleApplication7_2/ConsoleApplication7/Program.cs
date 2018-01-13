@@ -23,6 +23,7 @@ namespace ConsoleApplication7
             
             using (WebApp.Start<Startup>(url: "http://localhost:"+Storage.port+"/"))
             {
+                Console.WriteLine("Node: port "+Storage.port);
                 for (;;) { }
             }
             

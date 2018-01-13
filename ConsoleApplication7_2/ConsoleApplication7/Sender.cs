@@ -18,7 +18,7 @@ namespace ConsoleApplication7
             HttpClient client = new HttpClient();
             var jsonContent = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(value));
             jsonContent.Headers.ContentType = new MediaTypeWithQualityHeaderValue("application/json"); ;
-            var response = client.PutAsync(baseAddress+"api/values/" + key,
+            var response = client.PutAsync(baseAddress + key,
               jsonContent
                ).Result;
 
@@ -26,7 +26,7 @@ namespace ConsoleApplication7
         public string Get(string key)
         {
             HttpClient client = new HttpClient();
-            var response = client.GetAsync(baseAddress + "api/values/" + key).Result;
+            var response = client.GetAsync(baseAddress  + key).Result;
             var tmp = response.StatusCode;
             if (response.StatusCode.ToString() != "OK")
             {
@@ -38,7 +38,7 @@ namespace ConsoleApplication7
         }
         public void Delete(string key)
         {
-            var result = new HttpClient().DeleteAsync(baseAddress + "api/values/" + key).Result;
+            var result = new HttpClient().DeleteAsync(baseAddress + key).Result;
 
         }
     }

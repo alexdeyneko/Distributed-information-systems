@@ -8,6 +8,7 @@ using System.Web.Http;
 
 namespace ConsoleApplication7
 {
+    
     public class Startup
     {
         // This code configures Web API. The Startup class is specified as a type
@@ -26,4 +27,5 @@ namespace ConsoleApplication7
             appBuilder.UseWebApi(config);
         }
     } 
+    
 }

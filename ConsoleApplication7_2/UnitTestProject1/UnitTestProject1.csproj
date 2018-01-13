@@ -95,6 +95,10 @@
       <Project>{3fe02e7d-064a-4007-a18a-737393c29333}</Project>
       <Name>Node</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Proxy\Proxy.csproj">
+      <Project>{383c23f6-6392-4bf5-bdda-a1e4650b4125}</Project>
+      <Name>Proxy</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

@@ -35,7 +35,7 @@ namespace UnitTestProject1
         public Dictionary<string, string> testData;
         public UnitTest1()
         {
-            baseAddress = "http://localhost:"+port+"/";
+            baseAddress = "http://localhost:"+port+"/api/values/";
             testData = new TestDataGenerator().GenerateTestData();
 
         }
@@ -118,18 +118,42 @@ namespace UnitTestProject1
 
 
     [TestClass]
-    public class UnitTest2 :Sender
+    public class UnitTest2 : Sender
     {
-        
-        [TestMethod]
-        public void StartTwoNodes()
+        public Dictionary<string, string> testData;
+        string proxyPort = "9004";
+        string[] nodePorts = { "9000", "9001", "9002", "9003" };
+
+        public UnitTest2()
         {
-            Process.Start("Node.exe", "9000");
-            Process.Start("Node.exe", "9001");
-            Process.Start("Node.exe", "9002");
-            Process.Start("Node.exe", "9003");
+            baseAddress = "http://localhost:" + proxyPort + "/api/proxy/";
+            testData = new TestDataGenerator().GenerateTestData();
 
+        }
 
+        [TestMethod]
+        public void StartTwoNodesAndProxy()
+        {
+            string proxyArgs = proxyPort;
+
+            for (int i = 0; i < 4; i++)
+            {
+                proxyArgs += " " + nodePorts[i];
+                Process.Start("Node.exe", nodePorts[i]);
+            }
+
+            Process.Start("Proxy.exe", proxyArgs);
+
+        }
+        [TestMethod]
+        public void PutValues()
+        {
+            
+                foreach (var item in testData)
+                {
+                    Put(item.Key, item.Value);
+                }
+                
         }
 
     }

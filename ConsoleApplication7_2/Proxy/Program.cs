@@ -12,8 +12,13 @@ namespace Proxy
     {
         static void Main(string[] args)
         {
-            using (WebApp.Start<Startup>(url: "http://localhost:9004/"))
+            ProxyStorage.port = args[0];
+            for (int i = 1; i < args.Length; i++)
+                ProxyStorage.nodePorts.Add(args[i]);
+
+            using (WebApp.Start<Startup>(url: "http://localhost:"+ProxyStorage.port+"/"))
             {
+                Console.WriteLine("Proxy: port " + ProxyStorage.port);
                 for (; ; ) { }
             }
         }

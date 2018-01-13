@@ -58,7 +58,7 @@ namespace ConsoleApplication7
             writeAll();
             
         }
-
+        // DELETE api/values/5 
         public void Delete(string id)
         {
             readAll();

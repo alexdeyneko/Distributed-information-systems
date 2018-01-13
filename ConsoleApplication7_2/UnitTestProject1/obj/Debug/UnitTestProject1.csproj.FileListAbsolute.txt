@@ -103,3 +103,6 @@ C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\Console
 C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\bin\Debug\Node.exe.config
 C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\bin\Debug\ru\System.Net.Http.Formatting.resources.dll
 C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\bin\Debug\ru\System.Web.Http.resources.dll
+C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\bin\Debug\Proxy.exe
+C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\bin\Debug\Proxy.pdb
+C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\UnitTestProject1\bin\Debug\Proxy.exe.config

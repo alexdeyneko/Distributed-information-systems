@@ -27,8 +27,3 @@ C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\Console
 C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\Proxy\obj\Debug\Proxy.csproj.CoreCompileInputs.cache
 C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\Proxy\obj\Debug\Proxy.exe
 C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\Proxy\obj\Debug\Proxy.pdb
-C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\Proxy\bin\Debug\UnitTestProject1.dll
-C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\Proxy\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
-C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\Proxy\bin\Debug\UnitTestProject1.pdb
-C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\Proxy\bin\Debug\UnitTestProject1.dll.config
-C:\Users\Алексей\Documents\GitHub\Distributed-information-systems\ConsoleApplication7_2\Proxy\bin\Debug\ru\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
