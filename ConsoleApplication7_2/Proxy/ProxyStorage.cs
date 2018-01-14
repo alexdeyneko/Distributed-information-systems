@@ -11,6 +11,9 @@ namespace Proxy
         public static string port;
         public static List<string>nodePorts=new List<string>();
         public static int bucketCount=100;
-        public static List<TableRow> tableRows=new List<TableRow>();
+        public static Dictionary<int,string> bucketShardTable=new Dictionary<int, string>();
+        public static Dictionary<int, List<int>> keyBucketTable 
+            = new Dictionary<int, List<int>>();
+
     }
 }

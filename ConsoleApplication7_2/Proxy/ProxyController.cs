@@ -14,7 +14,8 @@ namespace ConsoleApplication7
         
        
         private Sender sender = new Sender();
-
+        private KeyBucketTableService kbt=new KeyBucketTableService();
+        static int currentBucket;
         //private int Shard(int key, int n)
         private int BucketFunction(int key)
         {
@@ -23,29 +24,23 @@ namespace ConsoleApplication7
 
         private void Route(int id)
         {
-            int bucket= BucketFunction(Convert.ToInt32(id));
-
-            sender.baseAddress= "http://localhost:" + GetShard(bucket)+"/api/values/";
+            currentBucket= BucketFunction(id);
+            //kbt.AddPair(id,bucket);
+            sender.baseAddress= "http://localhost:" + GetShard(currentBucket)+"/api/values/";
 
         }
 
         private string GetShard(int bucket)
         {
-            string port = "";
-            foreach (var row in ProxyStorage.tableRows)
-            {
-                if(bucket<=row.EndBucket && bucket>=row.BeginBucket)
-                {
-                    port = row.Port;
-                }
-            }
-            return port;
+            
+            return ProxyStorage.bucketShardTable[bucket];
         }
 
         public void Put(string id, [FromBody]string value)
         {
             Route(Convert.ToInt32(id));
             sender.Put(id,value);
+            kbt.AddPair(Convert.ToInt32(id),currentBucket);
         }
 
         public string Get(string id)
@@ -58,7 +53,9 @@ namespace ConsoleApplication7
         {
             Route(Convert.ToInt32(id));
             sender.Delete(id);
+            kbt.AddPair(Convert.ToInt32(id), currentBucket);
+
         }
-        
+
     }
 }

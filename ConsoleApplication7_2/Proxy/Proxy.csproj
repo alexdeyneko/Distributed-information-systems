@@ -70,7 +70,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TableRow.cs" />
+    <Compile Include="BucketShardTableService.cs" />
+    <Compile Include="KeyBucketTableService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProxyController.cs" />
