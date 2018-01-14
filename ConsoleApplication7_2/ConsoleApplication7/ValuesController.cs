@@ -10,8 +10,9 @@ namespace ConsoleApplication7
 {
     public class ValuesController : ApiController,IAPI
     {
-        private Dictionary<string, string> dictionary = new Dictionary<string, string>();
-        
+        //private Dictionary<string, string> dictionary = new Dictionary<string, string>();
+
+        /*
         private void readAll()
         {
             foreach (var item in File.ReadLines(Storage.filePath).ToList())
@@ -21,11 +22,12 @@ namespace ConsoleApplication7
                 dictionary.Add(key, value);
             }
         }
-        private void writeAll()
+        */
+        private void WriteData()
         {
             using (StreamWriter writer = new StreamWriter(Storage.filePath, false))
             {
-                foreach (var item in dictionary)
+                foreach (var item in Storage.dictionary)
                 {
                     writer.Write(item.Key + " ");
                     writer.WriteLine(item.Value);
@@ -37,8 +39,9 @@ namespace ConsoleApplication7
         // GET api/values/5 
         public string Get(string id)
         {
-            readAll();
-            return dictionary[id];
+            //readAll();
+            //return dictionary[id];
+            return Storage.dictionary[id];
         }
 
 
@@ -46,27 +49,27 @@ namespace ConsoleApplication7
         public void Put(string id, [FromBody]string value)
         {
 
-            readAll();
-            if (!dictionary.ContainsKey(id))
+            //readAll();
+            if (!Storage.dictionary.ContainsKey(id))
             {
-                dictionary.Add(id, value); 
+                Storage.dictionary.Add(id, value); 
             }
             else
             {
-                dictionary[id] = value;
+                Storage.dictionary[id] = value;
             }
-            writeAll();
+            WriteData();
             
         }
         // DELETE api/values/5 
         public void Delete(string id)
         {
-            readAll();
-            if (dictionary.ContainsKey(id))
+            //readAll();
+            if (Storage.dictionary.ContainsKey(id))
             {
-                dictionary.Remove(id);
+                Storage.dictionary.Remove(id);
             }
-            writeAll();
+            WriteData();
         }
 
        

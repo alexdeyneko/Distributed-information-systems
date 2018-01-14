@@ -37,6 +37,22 @@ namespace ConsoleApplication7
             {
                 File.Create(Storage.filePath);
             }
+            else
+            {
+                ReadData();
+            }
+        }
+        static private void ReadData()
+        {
+            foreach (var item in File.ReadLines(Storage.filePath).ToList())
+            {
+                var words = item.Split(new char[] { ' ' }, 2);
+            
+                string key = words[0];
+                string value = words[1];
+                
+                Storage.dictionary.Add(key, value);
+            }
         }
     }
 }

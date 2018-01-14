@@ -9,7 +9,8 @@ namespace ConsoleApplication7
     public static class Storage
     {
         static public string port;
-        static public string filePath;  
-        
+        static public string filePath;
+        static public Dictionary<string, string> dictionary = new Dictionary<string, string>();
+
     }
 }

@@ -9,6 +9,7 @@ using System.IO;
 using Microsoft.Owin.Hosting;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading;
 
 namespace UnitTestProject1
 {
@@ -17,7 +18,7 @@ namespace UnitTestProject1
         public Dictionary<string, string> GenerateTestData()
         {
             Dictionary<string, string> testData=new Dictionary<string, string>();
-            int count = 100;
+            int count = 1000;
             for (int i = 0; i < count; i++)
             {
                 testData.Add(i.ToString(), (i*10).ToString());
@@ -136,7 +137,7 @@ namespace UnitTestProject1
         {
             string proxyArgs = proxyPort;
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 2; i++)
             {
                 proxyArgs += " " + nodePorts[i];
                 Process.Start("Node.exe", nodePorts[i]);
@@ -149,12 +150,12 @@ namespace UnitTestProject1
         public void PutValues()
         {
             
-                foreach (var item in testData)
-                {
-                    Put(item.Key, item.Value);
-                }
-                
+            foreach (var item in testData)
+            {
+                Put(item.Key, item.Value);
+            }
+            
         }
-
+        
     }
 }
