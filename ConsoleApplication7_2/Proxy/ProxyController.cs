@@ -14,17 +14,32 @@ namespace ConsoleApplication7
         
        
         private Sender sender = new Sender();
-       
-        private int Shard(int key, int n)
+
+        //private int Shard(int key, int n)
+        private int BucketFunction(int key)
         {
-            return key%n;
+            return key%ProxyStorage.bucketCount;
         }
 
         private void Route(int id)
         {
-            int shard= Shard(Convert.ToInt32(id), ProxyStorage.nodePorts.Count);
-            sender.baseAddress= "http://localhost:" + ProxyStorage.nodePorts[shard].ToString()+"/api/values/";
+            int bucket= BucketFunction(Convert.ToInt32(id));
 
+            sender.baseAddress= "http://localhost:" + GetShard(bucket)+"/api/values/";
+
+        }
+
+        private string GetShard(int bucket)
+        {
+            string port = "";
+            foreach (var row in ProxyStorage.tableRows)
+            {
+                if(bucket<=row.EndBucket && bucket>=row.BeginBucket)
+                {
+                    port = row.Port;
+                }
+            }
+            return port;
         }
 
         public void Put(string id, [FromBody]string value)

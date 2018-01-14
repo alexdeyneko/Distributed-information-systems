@@ -18,7 +18,7 @@ namespace UnitTestProject1
         public Dictionary<string, string> GenerateTestData()
         {
             Dictionary<string, string> testData=new Dictionary<string, string>();
-            int count = 1000;
+            int count = 400;
             for (int i = 0; i < count; i++)
             {
                 testData.Add(i.ToString(), (i*10).ToString());
@@ -137,7 +137,7 @@ namespace UnitTestProject1
         {
             string proxyArgs = proxyPort;
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 4; i++)
             {
                 proxyArgs += " " + nodePorts[i];
                 Process.Start("Node.exe", nodePorts[i]);
