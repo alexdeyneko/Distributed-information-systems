@@ -20,11 +20,11 @@ namespace Proxy
 
             new BucketShardTableService().LoadCurrentTable();
             new KeyBucketTableService().LoadCurrentTable();
-
+           
             using (WebApp.Start<Startup>(url: "http://localhost:" + ProxyStorage.port + "/"))
             {
+                new Resharder().Analize();
                 Console.WriteLine("Proxy: port " + ProxyStorage.port);
-
                 for (; ; ) { }
             }
         }

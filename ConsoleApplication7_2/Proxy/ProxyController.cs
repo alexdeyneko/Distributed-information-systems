@@ -41,6 +41,7 @@ namespace ConsoleApplication7
             Route(Convert.ToInt32(id));
             sender.Put(id,value);
             kbt.AddPair(Convert.ToInt32(id),currentBucket);
+            kbt.WriteTable();
         }
 
         public string Get(string id)
@@ -53,7 +54,9 @@ namespace ConsoleApplication7
         {
             Route(Convert.ToInt32(id));
             sender.Delete(id);
-            kbt.AddPair(Convert.ToInt32(id), currentBucket);
+            kbt.DeletePair(Convert.ToInt32(id), currentBucket);
+            kbt.WriteTable();
+
 
         }
 

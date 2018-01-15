@@ -137,7 +137,7 @@ namespace UnitTestProject1
         {
             string proxyArgs = proxyPort;
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 4; i++)
             {
                 proxyArgs += " " + nodePorts[i];
                 Process.Start("Node.exe", nodePorts[i]);
