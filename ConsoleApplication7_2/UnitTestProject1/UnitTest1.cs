@@ -162,6 +162,18 @@ namespace UnitTestProject1
         }
 
         [TestMethod]
+        public void KillProcesses()
+        {
+            foreach (var process in Process.GetProcesses())
+            {
+                if(process.ProcessName.Contains("Node")
+                    || process.ProcessName.Contains("Proxy"))
+                process.Kill();
+            }
+            
+        }
+
+        [TestMethod]
         public void PutValues()
         {
             
