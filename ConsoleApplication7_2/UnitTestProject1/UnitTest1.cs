@@ -147,6 +147,21 @@ namespace UnitTestProject1
 
         }
         [TestMethod]
+        public void ClearFiles()
+        {
+            List<string> files = new List<string>() {
+                "bucket-keys.txt",
+                "bucketshard.txt"
+            ,   "nodes/9000.txt",
+                "nodes/9001.txt",
+                "nodes/9002.txt",
+                "nodes/9003.txt." };
+
+            foreach (var file in files)
+            File.WriteAllText(file, string.Empty);
+        }
+
+        [TestMethod]
         public void PutValues()
         {
             
