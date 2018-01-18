@@ -13,46 +13,20 @@ namespace ConsoleApplication7
 {
     class Program
     {
-
         static void Main(String[] args)
         {
            
-            Storage.port =args[0];
-            
-            CreateDB();
-            
-            using (WebApp.Start<Startup>(url: "http://localhost:"+Storage.port+"/"))
+            Node.nodePort =args[0];
+            Node node= new Node(args.Skip(1).ToList());
+            node.CreateDB();
+
+            using (WebApp.Start<Startup>(url: "http://localhost:"+Node.nodePort+"/"))
             {
-                Console.WriteLine("Node: port "+Storage.port);
+                Console.WriteLine("Node: port "+Node.nodePort);
                 for (;;) { }
             }
             
         }
-
-        static private void CreateDB()
-        {
-            Storage.filePath= @"nodes\" + Storage.port + ".txt";
-
-            if (!File.Exists(Storage.filePath))
-            {
-                File.Create(Storage.filePath);
-            }
-            else
-            {
-                ReadData();
-            }
-        }
-        static private void ReadData()
-        {
-            foreach (var item in File.ReadLines(Storage.filePath).ToList())
-            {
-                var words = item.Split(new char[] { ' ' }, 2);
-            
-                string key = words[0];
-                string value = words[1];
-                
-                Storage.dictionary.Add(key, value);
-            }
-        }
+        
     }
 }

@@ -10,24 +10,12 @@ namespace ConsoleApplication7
 {
     public class ValuesController : ApiController,IAPI
     {
-        //private Dictionary<string, string> dictionary = new Dictionary<string, string>();
 
-        /*
-        private void readAll()
-        {
-            foreach (var item in File.ReadLines(Storage.filePath).ToList())
-            {
-                string key = item.Split(' ')[0];
-                string value = item.Split(' ')[1];
-                dictionary.Add(key, value);
-            }
-        }
-        */
         private void WriteData()
         {
-            using (StreamWriter writer = new StreamWriter(Storage.filePath, false))
+            using (StreamWriter writer = new StreamWriter(Node.dbFileName, false))
             {
-                foreach (var item in Storage.dictionary)
+                foreach (var item in Node.dictionary)
                 {
                     writer.Write(item.Key + " ");
                     writer.WriteLine(item.Value);
@@ -39,37 +27,37 @@ namespace ConsoleApplication7
         // GET api/values/5 
         public string Get(string id)
         {
-            //readAll();
-            //return dictionary[id];
-            return Storage.dictionary[id];
+            
+            return Node.dictionary[id];
         }
 
 
         // PUT api/values/5 
         public void Put(string id, [FromBody]string value)
         {
-
-            //readAll();
-            if (!Storage.dictionary.ContainsKey(id))
+  
+            if (!Node.dictionary.ContainsKey(id))
             {
-                Storage.dictionary.Add(id, value); 
+                Node.dictionary.Add(id, value); 
             }
             else
             {
-                Storage.dictionary[id] = value;
+                Node.dictionary[id] = value;
             }
             WriteData();
+            Node.PutIntoReplica(id, value);
             
         }
         // DELETE api/values/5 
         public void Delete(string id)
         {
             //readAll();
-            if (Storage.dictionary.ContainsKey(id))
+            if (Node.dictionary.ContainsKey(id))
             {
-                Storage.dictionary.Remove(id);
+                Node.dictionary.Remove(id);
             }
             WriteData();
+            Node.DeleteFromReplica(id);
         }
 
        

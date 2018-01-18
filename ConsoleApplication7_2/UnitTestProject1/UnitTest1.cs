@@ -32,7 +32,7 @@ namespace UnitTestProject1
     public class UnitTest1 : Sender
     {
         static private string port = "9000";
-        private string path = @"nodes\"+port+".txt";
+        private string path = @"nodes\"+port + ".txt";
         public Dictionary<string, string> testData;
         public UnitTest1()
         {
@@ -152,10 +152,10 @@ namespace UnitTestProject1
             List<string> files = new List<string>() {
                 "bucket-keys.txt",
                 "bucketshard.txt"
-            ,   "nodes/9000.txt",
-                "nodes/9001.txt",
-                "nodes/9002.txt",
-                "nodes/9003.txt." };
+            ,   "nodes/master9000.txt",
+                "nodes/master9001.txt",
+                "nodes/master9002.txt",
+                "nodes/master9003.txt." };
 
             foreach (var file in files)
             File.WriteAllText(file, string.Empty);
@@ -183,6 +183,15 @@ namespace UnitTestProject1
             }
             
         }
-        
+
+        [TestMethod]
+        public void StartMasterAndSlaves()
+        {
+            Process.Start("Node.exe", "9000 9001 9002");
+            Process.Start("Node.exe", "9001");
+            Process.Start("Node.exe", "9002");
+
+        }
+
     }
 }
