@@ -29,14 +29,15 @@ namespace UnitTestProject1
     }
 
     [TestClass]
-    public class UnitTest1 : Sender
+    public class NodeTests : Sender
     {
         static private string port = "9000";
-        private string path = @"nodes\"+port + ".txt";
+        private string path = StringGenerator.GenerateDBFilePath(port);
         public Dictionary<string, string> testData;
-        public UnitTest1()
+
+        public NodeTests()
         {
-            baseAddress = "http://localhost:"+port+"/api/values/";
+            baseAddress = StringGenerator.GenerateNodeAddress(port);
             testData = new TestDataGenerator().GenerateTestData();
 
         }
@@ -119,15 +120,15 @@ namespace UnitTestProject1
 
 
     [TestClass]
-    public class UnitTest2 : Sender
+    public class ProxyTests : Sender
     {
         public Dictionary<string, string> testData;
         string proxyPort = "9004";
         string[] nodePorts = { "9000", "9001", "9002", "9003" };
 
-        public UnitTest2()
+        public ProxyTests()
         {
-            baseAddress = "http://localhost:" + proxyPort + "/api/proxy/";
+            baseAddress = StringGenerator.GenerateProxyAddress(proxyPort);
             testData = new TestDataGenerator().GenerateTestData();
 
         }
@@ -184,14 +185,21 @@ namespace UnitTestProject1
             
         }
 
+    }
+
+    [TestClass]
+    public class ReplicationTests
+    {
+        string masterPort = "9000";
+        string []slavePorts = { "9001","9002"};
+
         [TestMethod]
         public void StartMasterAndSlaves()
         {
-            Process.Start("Node.exe", "9000 9001 9002");
-            Process.Start("Node.exe", "9001");
-            Process.Start("Node.exe", "9002");
+            Process.Start("Node.exe", masterPort+" "+String.Join(" ",slavePorts));
+            Process.Start("Node.exe", slavePorts[0]);
+            Process.Start("Node.exe", slavePorts[1]);
 
         }
-
     }
 }

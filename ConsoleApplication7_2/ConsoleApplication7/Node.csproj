@@ -74,6 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StringGenerator.cs" />
     <Compile Include="IAPI.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />
