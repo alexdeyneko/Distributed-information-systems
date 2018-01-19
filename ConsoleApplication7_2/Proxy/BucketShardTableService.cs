@@ -5,11 +5,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Proxy
+namespace ProxyNamespace
 {
     public class BucketShardTableService
     {
         private string configFileName = "bucket-shard.txt";
+        private Dictionary<int, string> table;
+
+        public BucketShardTableService()
+        {
+            table = new Dictionary<int, string>();
+        }
+
+        public Dictionary<int, string>  GetTable()
+        {
+            return table;
+        }
         public void LoadCurrentTable() //создает таблицу либо загружает готовую (при старте)
         {
             
@@ -18,17 +29,16 @@ namespace Proxy
                 File.Create(configFileName).Dispose();
                 
             }
-            if (new FileInfo(configFileName).Length == 0)
+            if (new FileInfo(configFileName).Length==0)
             {
-                ProxyStorage.bucketShardTable = GetNewTable();
-                WriteTable(ProxyStorage.bucketShardTable);
+                table= GetNewTable();
+                WriteTable(table);
                
             }
             else
             {
-                ProxyStorage.bucketShardTable=GetOldTable();
+                table=GetOldTable();
             }
-           
         }
         
         
@@ -60,24 +70,24 @@ namespace Proxy
             }
             return table;
         }
-
+        
         public Dictionary<int, string> GetNewTable()       //генерирует новую таблицу, исходя из кол-ва нод
         {
 
             Dictionary<int, string> dictionary = new Dictionary<int, string>();
 
-            for (int i = 0; i < ProxyStorage.bucketCount; i++)
+            for (int i = 0; i < Proxy.bucketCount; i++)
             {
-                dictionary.Add(i, ProxyStorage.nodePorts[i / (ProxyStorage.bucketCount / ProxyStorage.nodePorts.Count)]);
+                dictionary.Add(i, Proxy.nodePorts[i / (Proxy.bucketCount / Proxy.nodePorts.Count)]);
             }
             return dictionary;
 
         }
-
+        
         public void ChangeShard(int bucket,string shard)
         {
-            ProxyStorage.bucketShardTable[bucket] = shard;
-            WriteTable(ProxyStorage.bucketShardTable);
+            table[bucket] = shard;
+            WriteTable(table);
         }
 
 

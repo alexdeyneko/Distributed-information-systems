@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Owin.Hosting;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,22 +10,31 @@ namespace ConsoleApplication7
 {
     public class Node
     {
-        static public Dictionary<string, string> dictionary = new Dictionary<string, string>();
-        static public string dbFileName;
-        static public string nodePort;
+        public static Dictionary<string, string> dictionary = new Dictionary<string, string>();
+        public static string dbFileName;
 
+        private string nodePort;
         static List<string> slavePorts;
         static Sender sender = new Sender();
 
 
-        public Node(List<string> slaves)
+        public Node(string port,List<string> slaves)
 
-        { 
+        {
+            nodePort = port;
             slavePorts = slaves;
             dbFileName = @"nodes\"  + nodePort + ".txt";
         }
 
        
+        public void Start()
+        {
+            using (WebApp.Start<Startup>(url: "http://localhost:" + nodePort + "/"))
+            {
+                Console.WriteLine("Node: port " + nodePort);
+                for (; ; ) { }
+            }
+        }
         public void CreateDB()
         {
 

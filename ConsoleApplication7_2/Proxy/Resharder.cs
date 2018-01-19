@@ -5,48 +5,48 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Proxy
+namespace ProxyNamespace
 {
     public class Resharder
     {
-        KeyBucketTableService kbt = new KeyBucketTableService();
-        BucketShardTableService bst = new BucketShardTableService();
+        
         private Sender sender = new Sender();
-
-
-        public void Analize()
+        
+        public void Analize(KeyBucketTableService kbt, BucketShardTableService bst)
         {
             Dictionary<int, string> BSTable = bst.GetNewTable();
             foreach (var row in BSTable)
             {
-                if (row.Value != ProxyStorage.bucketShardTable[row.Key])
+
+
+                if (row.Value != bst.GetTable()[row.Key])
                 {
-                    Reshard(ProxyStorage.bucketShardTable[row.Key], row.Value, FindRowsFromBucket(row.Key));
+                    Reshard(bst.GetTable()[row.Key], row.Value, FindRowsFromBucket(row.Key,kbt.GetTable()));
                     bst.ChangeShard(row.Key,BSTable[row.Key]);
                     //не дописывает
                 }
             }
         }
 
-        public List<int> FindRowsFromBucket(int bucket)
+        private List<int> FindRowsFromBucket(int bucket, Dictionary<int, List<int>> table)
         {
-            return ProxyStorage.keyBucketTable[bucket];
+            return table[bucket];
         }
 
-        public void Reshard(string oldAddress, string newAddress, List<int> keys)
+        private void Reshard(string oldPort, string newPort, List<int> keys)
         {
             
             foreach (var key in keys)
             {
-                sender.baseAddress = "http://localhost:" + oldAddress + "/api/values/";
+                sender.baseAddress = StringGenerator.GenerateNodeAddress(oldPort);
                 string id = key.ToString();
                 try
                 {
                     var value = sender.Get(id);
 
-                    sender.baseAddress = "http://localhost:" + newAddress + "/api/values/";
+                    sender.baseAddress = StringGenerator.GenerateNodeAddress(newPort);
                     sender.Put(id, value);
-                    sender.baseAddress = "http://localhost:" + oldAddress + "/api/values/";
+                    sender.baseAddress = StringGenerator.GenerateNodeAddress(oldPort);
                     sender.Delete(id);
                 }
                 catch

@@ -134,7 +134,7 @@ namespace UnitTestProject1
         }
 
         [TestMethod]
-        public void StartTwoNodesAndProxy()
+        public void StartNodesAndProxy()
         {
             string proxyArgs = proxyPort;
 
@@ -152,11 +152,11 @@ namespace UnitTestProject1
         {
             List<string> files = new List<string>() {
                 "bucket-keys.txt",
-                "bucketshard.txt"
-            ,   "nodes/master9000.txt",
-                "nodes/master9001.txt",
-                "nodes/master9002.txt",
-                "nodes/master9003.txt." };
+                "bucket-shard.txt"
+            ,   "nodes/9000.txt",
+                "nodes/9001.txt",
+                "nodes/9002.txt",
+                "nodes/9003.txt." };
 
             foreach (var file in files)
             File.WriteAllText(file, string.Empty);
@@ -180,6 +180,7 @@ namespace UnitTestProject1
             
             foreach (var item in testData)
             {
+                //baseAddress = StringGenerator.GenerateProxyAddress("9004");
                 Put(item.Key, item.Value);
             }
             

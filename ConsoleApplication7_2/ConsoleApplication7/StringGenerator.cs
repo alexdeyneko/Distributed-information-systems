@@ -11,7 +11,7 @@ namespace ConsoleApplication7
         
         static public string GenerateProxyAddress(string port)
         {
-            return "http://localhost:" + port + "/api/proxi/";
+            return "http://localhost:" + port + "/api/proxy/";
         }
 
         static public string GenerateNodeAddress(string port)

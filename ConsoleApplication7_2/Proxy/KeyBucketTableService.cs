@@ -5,74 +5,66 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Proxy
+namespace ProxyNamespace
 {
     public class KeyBucketTableService
     {
         private string configFileName = "bucket-keys.txt";
 
+        private Dictionary<int, List<int>> table;
         
+        public KeyBucketTableService()
+        {
+            table = new Dictionary<int, List<int>>();
+        }
+
+        public Dictionary<int, List<int>> GetTable()
+        {
+            return table;
+        }
+
         public void AddPair(int key,int bucket)
         {
-            if(ProxyStorage.keyBucketTable.ContainsKey(bucket))
+            if(table.ContainsKey(bucket))
             {
-                if (!ProxyStorage.keyBucketTable[bucket].Contains(key))
+                if (!table[bucket].Contains(key))
                 {
-                    ProxyStorage.keyBucketTable[bucket].Add(key);
+                    table[bucket].Add(key);
                 }
                 
             }
             else
             {
-                ProxyStorage.keyBucketTable.Add(bucket, new List<int>() { key });
+                table.Add(bucket, new List<int>() { key });
             }
+            WriteTable();
             
         }
 
         public void DeletePair(int key,int bucket)
         {
-            ProxyStorage.keyBucketTable[bucket].Remove(key);
-            /*
-            if (ProxyStorage.keyBucketTable[bucket].Count.Equals(0))
-            {
-                ProxyStorage.keyBucketTable.Remove(bucket);
-            }
-            */
+            table[bucket].Remove(key);
+            WriteTable();
         }
 
         public void LoadCurrentTable()
         {
+
             if (!File.Exists(configFileName))
             {
                 File.Create(configFileName).Dispose();
             }
-            if (new FileInfo(configFileName).Length == 0)
-            {
-                PrepareTable();
-            }
-            else
-            {
-                ReadTable();
-            }
+            ReadTable();
             
         }
 
-        public void PrepareTable()
+        
+
+        private void WriteTable()
         {
             using (StreamWriter writer = new StreamWriter(configFileName, false))
             {
-                for (int i=0;i< ProxyStorage.bucketCount;i++)
-                {
-                    ProxyStorage.keyBucketTable.Add(i,new List<int>());
-                    writer.WriteLine(i);
-                }
-            }
-        }
-        public void WriteTable()
-        {
-            using (StreamWriter writer = new StreamWriter(configFileName, false))
-            {
-                foreach (var row in ProxyStorage.keyBucketTable)
+                foreach (var row in table)
                 {
                     //номер бакета
                     writer.Write(row.Key);

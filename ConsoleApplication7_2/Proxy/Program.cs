@@ -8,25 +8,16 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Proxy
+namespace ProxyNamespace
 {
     class Program
     {
         static void Main(string[] args)
         {
-            ProxyStorage.port = args[0];
-            for (int i = 1; i < args.Length; i++)
-                ProxyStorage.nodePorts.Add(args[i]);
+            int bucketCount = 100;
 
-            new BucketShardTableService().LoadCurrentTable();
-            new KeyBucketTableService().LoadCurrentTable();
-           
-            using (WebApp.Start<Startup>(url: "http://localhost:" + ProxyStorage.port + "/"))
-            {
-                new Resharder().Analize();
-                Console.WriteLine("Proxy: port " + ProxyStorage.port);
-                for (; ; ) { }
-            }
+            Proxy proxy = new Proxy(args[0], bucketCount, args.Skip(1).ToList());
+            proxy.Start();
         }
     }
 }

@@ -16,15 +16,9 @@ namespace ConsoleApplication7
         static void Main(String[] args)
         {
            
-            Node.nodePort =args[0];
-            Node node= new Node(args.Skip(1).ToList());
+            Node node= new Node(args[0],args.Skip(1).ToList());
             node.CreateDB();
-
-            using (WebApp.Start<Startup>(url: "http://localhost:"+Node.nodePort+"/"))
-            {
-                Console.WriteLine("Node: port "+Node.nodePort);
-                for (;;) { }
-            }
+            node.Start();
             
         }
         
