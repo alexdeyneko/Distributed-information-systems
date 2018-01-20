@@ -10,7 +10,7 @@ namespace ConsoleApplication7
 {
     public class Node
     {
-        public static Dictionary<string, string> dictionary = new Dictionary<string, string>();
+        public static Dictionary<string, string> dictionary;
         public static string dbFileName;
 
         private string nodePort;
@@ -24,6 +24,8 @@ namespace ConsoleApplication7
             nodePort = port;
             slavePorts = slaves;
             dbFileName = @"nodes\"  + nodePort + ".txt";
+            dictionary = new Dictionary<string, string>();
+           
         }
 
        
@@ -64,18 +66,18 @@ namespace ConsoleApplication7
 
         static public void PutIntoReplica(string key, string value)
         {
-            foreach(var address in slavePorts)
+            foreach(var port in slavePorts)
             {
-                sender.baseAddress = "http://localhost:" +address +"/api/values/";
+                sender.baseAddress = StringGenerator.GenerateNodeAddress(port);
                 sender.Put(key, value);
             }
         }
 
         static public void DeleteFromReplica(string key)
         {
-            foreach (var address in slavePorts)
+            foreach (var port in slavePorts)
             {
-                sender.baseAddress = "http://localhost:" + address + "/api/values/";
+                sender.baseAddress = StringGenerator.GenerateNodeAddress(port);
                 sender.Delete(key);
             }
         }
