@@ -23,7 +23,7 @@ namespace ConsoleApplication7
         {
             nodePort = port;
             slavePorts = slaves;
-            dbFileName = @"nodes\"  + nodePort + ".txt";
+            dbFileName = StringGenerator.GenerateDBFilePath(nodePort);
             dictionary = new Dictionary<string, string>();
            
         }
