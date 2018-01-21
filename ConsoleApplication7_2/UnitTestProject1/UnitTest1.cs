@@ -124,7 +124,9 @@ namespace UnitTestProject1
     {
         public Dictionary<string, string> testData;
         string proxyPort = "9004";
-        string[] nodePorts = { "9000", "9001", "9002", "9003" };
+        string[] nodePorts = { "9000", "9001" 
+                ,"9002","9003" 
+        };
 
         public ProxyTests()
         {
@@ -138,7 +140,7 @@ namespace UnitTestProject1
         {
             string proxyArgs = proxyPort;
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < nodePorts.Length; i++)
             {
                 proxyArgs += " " + nodePorts[i];
                 Process.Start("Node.exe", nodePorts[i]);
@@ -152,14 +154,12 @@ namespace UnitTestProject1
         {
             List<string> files = new List<string>() {
                 "bucket-keys.txt",
-                "bucket-shard.txt"
-            ,   "nodes/9000.txt",
-                "nodes/9001.txt",
-                "nodes/9002.txt",
-                "nodes/9003.txt." };
-
+                "bucket-shard.txt" };
+            
+            foreach (var node in nodePorts)
+                files.Add(StringGenerator.GenerateDBFilePath(node));
             foreach (var file in files)
-            File.WriteAllText(file, string.Empty);
+                File.WriteAllText(file, string.Empty);
         }
 
         [TestMethod]
@@ -177,13 +177,22 @@ namespace UnitTestProject1
         [TestMethod]
         public void PutValues()
         {
-            
             foreach (var item in testData)
+                Put(item.Key, item.Value);  
+        }
+
+        [TestMethod]
+        public void CheckShardingResults()
+        {
+            for(int i=1;i<nodePorts.Length;i++)
             {
-                //baseAddress = StringGenerator.GenerateProxyAddress("9004");
-                Put(item.Key, item.Value);
+                Assert.AreEqual(GetFileSize(nodePorts[i]), GetFileSize(nodePorts[i - 1]));
             }
-            
+        }
+        public int GetFileSize(string nodeNumber)
+        {
+            string path =StringGenerator.GenerateDBFilePath((nodeNumber).ToString());
+            return File.ReadAllLines(path).Length;
         }
 
     }
@@ -201,6 +210,21 @@ namespace UnitTestProject1
             Process.Start("Node.exe", slavePorts[0]);
             Process.Start("Node.exe", slavePorts[1]);
 
+        }
+
+        [TestMethod]
+        public void CheckReplicationResults()
+        {
+            string masterText = File.ReadAllText(StringGenerator.GenerateDBFilePath((masterPort).ToString()));
+
+            foreach (var slave in slavePorts)
+            {
+                Assert.AreEqual
+                (
+                   File.ReadAllText(StringGenerator.GenerateDBFilePath((slave).ToString())),
+                   masterText
+                );
+            }
         }
     }
 }
